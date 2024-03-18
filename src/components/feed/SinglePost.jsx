@@ -10,7 +10,7 @@ export default function SinglePost({img, username, avatar}) {
     <Box borderRadius={4} overflow={'hidden'}>
         <Image src={img} alt={username}/>
     </Box>
-    <PostFooter avatar={avatar}/>
+    <PostFooter username={username}/>
     </>
   )
 }

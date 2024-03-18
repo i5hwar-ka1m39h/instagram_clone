@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Flex, Box} from '@chakra-ui/react'
-import FeedPosts from '../components/FeedPosts'
-import SuggestionBox from '../components/SuggestionBox'
+import FeedPosts from '../components/feed/FeedPosts'
+import SuggestionBox from '../components/suggestionBox/SuggestionBox'
 
 export default function Home() {
   return (
