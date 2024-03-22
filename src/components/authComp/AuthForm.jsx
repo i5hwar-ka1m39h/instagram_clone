@@ -26,7 +26,7 @@ export default function AuthForm() {
             <Box flex={2} bg={'gray.400'} h={'1px'}/> 
           </Flex>
 
-          <GoogleLogIn/>
+          <GoogleLogIn prefix={isLogin ? 'Log in' : 'Sign up'}/>
         </VStack>
       </Box>
 

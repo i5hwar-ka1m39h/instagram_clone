@@ -25,7 +25,7 @@ export default function Login() {
             </Alert>
         }
 
-        <Button w={'full'} fontSize={14} size={'sm'} isLoading={loading} colorScheme='blue' onClick={()=>login(inputs.email, inputs.password)} >
+        <Button w={'full'} fontSize={14} size={'sm'} isLoading={loading} colorScheme='blue' onClick={()=>login(inputs)} >
           Log in 
         </Button>
 

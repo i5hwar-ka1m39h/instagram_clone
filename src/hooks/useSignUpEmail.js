@@ -9,7 +9,6 @@ import useAuthStore from '../store/authStore';
 const useSignUpEmail = () => {
     const [
         createUserWithEmailAndPassword,
-        
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth);

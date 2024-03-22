@@ -1,6 +1,6 @@
 import React from 'react'
 import {Flex, Box} from '@chakra-ui/react'
-import SideBar from '../components/SideBar'
+import SideBar from '../components/sidebarcomp/SideBar'
 import {useLocation} from 'react-router-dom'
 import { auth } from '../firebase/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -10,8 +10,10 @@ import { Spinner } from '@chakra-ui/react'
 export default function PageLayout({children}) {
     const {pathname} = useLocation()
     const [user, loading, error] = useAuthState(auth);
+    
     const canRenderSidebar = pathname !== '/auth' && user;
     const canRenderNavbar = !user && !loading && pathname !=='/auth';
+
     const loadingState = !user && loading;
     if(loadingState) return <PageIsLoading/>
   return (
