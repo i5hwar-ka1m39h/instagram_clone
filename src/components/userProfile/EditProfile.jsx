@@ -48,13 +48,6 @@ const EditProfile = ({ isOpen, onClose }) => {
     }
   }
 
-
-  
-
-
-
-
-
 	return (
 		<>
 			<Modal isOpen={isOpen} onClose={onClose}>

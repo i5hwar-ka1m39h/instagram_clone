@@ -73,7 +73,6 @@ export default function SideBar() {
 
             <Flex direction={'column'} gap={5} cursor={'pointer'}>
                <SideBarItems/> 
-
             </Flex>
 
             <Flex direction={'column'} gap={5} cursor={'pointer'} mt={'auto'}>
