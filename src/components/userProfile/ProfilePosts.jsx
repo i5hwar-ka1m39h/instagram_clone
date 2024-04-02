@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import {Grid, GridItem} from '@chakra-ui/react'
+import {Grid, GridItem, Flex, Text} from '@chakra-ui/react'
 import { Skeleton } from '@chakra-ui/react'
 import ProfilePostSingle from './ProfilePostSingle'
+import useGetUserPosts from '../../hooks/useGetUserPosts'
 
 
 export default function ProfilePosts() {
-    const[isLoading, setIsLoading] = useState(true)
+   const{isLoading, posts} = useGetUserPosts()
     
+    console.log(posts);
 
-    useEffect(()=>{
-        setTimeout(()=>{
-            setIsLoading(false);
-        },2000)
-    },[])
+   if(!isLoading && posts.length ===0) return <NoPostFound/>
 
   return (
     <>
@@ -40,15 +38,40 @@ export default function ProfilePosts() {
         </Grid>
     }
 
-    {!isLoading && <Grid templateColumns={{sm:'repeat(1, 1fr)', md:'repeat(3,1fr)'}} gap={1} columnGap={1}>
+    {/* {!isLoading && <Grid templateColumns={{sm:'repeat(1, 1fr)', md:'repeat(3,1fr)'}} gap={1} columnGap={1}>
         <ProfilePostSingle img='/img4.png'/>
         <ProfilePostSingle img='/img4.png'/>
         <ProfilePostSingle img='/img4.png'/>
         <ProfilePostSingle img='/img4.png'/>
         <ProfilePostSingle img='/img4.png'/>
         <ProfilePostSingle img='/img4.png'/>
-    </Grid>}
-    
+    </Grid>} */}
+    {!isLoading && (
+        <Grid templateColumns={{sm:'repeat(1, 1fr)', md:'repeat(3,1fr)'}} gap={1} columnGap={1}>
+            {posts.map(post=>(
+                <>
+                    <ProfilePostSingle post={post} key={post.id}/>
+                </>
+            ))}
+        </Grid>
+
+    )}
+
+
+
+
+
     </>
   )
+}
+
+
+const NoPostFound = ()=>{
+    return(
+        <>
+        <Flex flexDirection={'column'} textAlign={'center'} mx={'auto'} mt={10}>
+            <Text fontSize={'2xl'}>No post by this user</Text>
+        </Flex>
+        </>
+    )
 }

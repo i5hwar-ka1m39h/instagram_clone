@@ -20,7 +20,7 @@ export default function useGetSuggestedUsers() {
                 // if(snapShot.empty) return showToast('Error', 'No Suggestions found', 'error')
                 let users = []
                 snapShot.forEach(doc => users.push({...doc.data(), id: doc.id}))
-                console.log(users);
+               
                 setMultiUsers(users)
                 
             } catch (error) {

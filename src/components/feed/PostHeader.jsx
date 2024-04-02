@@ -1,15 +1,26 @@
 import React from 'react'
 import {Flex, Box, Avatar, Text} from '@chakra-ui/react'
+import timeSince from '../../generalFunction/timeSince'
+import useAuthStore from '../../store/authStore'
+import { Link } from 'react-router-dom'
 
-export default function PostHeader({username, avatar}) {
+export default function PostHeader({post, userProfile, }) {
+     console.log(userProfile);
   return (
     <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'} py={2}>
         <Flex alignItems={'center'} gap={2}>
-            <Avatar src={avatar} size={'sm'} alt='user profile pic' />
+            {userProfile ?():()}
+            <Link to={`/${userProfile.username}`}> 
+                <Avatar src={userProfile.profilePic} size={'sm'} alt='user profile pic' />
+            </Link>
             <Flex fontSize={14} fontWeight={'bold'} gap={2}>
-                {username}
-                <Box color={'gray.500'}>
-                    ▪ 1w
+
+                <Link to={`/${userProfile.username}`}>
+                    {userProfile.username}
+                </Link>
+
+                <Box color={'gray.500'} fontSize={10}>
+                    1w
                 </Box>
             </Flex>
 
@@ -17,9 +28,10 @@ export default function PostHeader({username, avatar}) {
         <Box cursor={'pointer'}>
             <Text fontSize={14} color={'blue.500'} fontWeight={'bold'}
              _hover={{color:'white'}} transition={'0.2s ease-in-out'}>
-                Unfollow
+                {`something`}
             </Text>
         </Box>
     </Flex>
+    
   )
 }

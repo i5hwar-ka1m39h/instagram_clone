@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {Container, VStack,Flex, Skeleton, SkeletonCircle, Box} from '@chakra-ui/react'
+import {Container, VStack,Flex, Skeleton, SkeletonCircle, Text,Box} from '@chakra-ui/react'
 import SinglePost from './SinglePost'
+import useGetFeed from '../../hooks/useGetFeed';
 
 export default function FeedPosts() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(()=>{
-    setTimeout(() => setIsLoading(false), 2000)
-  },[])
+  const {posts, isLoading} = useGetFeed()
+  
 
   return (
     <Container maxW={'container.sm'} py={10} px={2}>
@@ -27,18 +25,15 @@ export default function FeedPosts() {
           </VStack>
         ))}
 
-        {!isLoading && 
-        <>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-          <SinglePost img='/img1.png' username='hudanadada' avatar='/img1.png'/>
-       </>
-        }
+      {!isLoading && posts.length > 0 && posts.map((post) => <SinglePost key={post.id} post={post} />)}
+			{!isLoading && posts.length === 0 && (
+				<>
+					<Text fontSize={"md"} color={"red.400"}>
+						If this is the situation then you have transcended the limitations of your mind and soul to seek out a resume project of this lowly one
+					</Text>
+					
+				</>
+			)}  
     </Container>
   )
 }
