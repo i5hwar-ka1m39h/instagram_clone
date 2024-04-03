@@ -12,7 +12,7 @@ export default function CommentBy({ comment}) {
     <Flex  gap={4}>
         <Avatar src={userProfile.profilePic} size={'sm'}/>
         <Flex  gap={2} direction={'column'}>
-            <Flex alignItems={'center'} justifyContent={'center'} gap={2}>
+            <Flex alignItems={'center'}  gap={2}>
                 <Text fontSize={12} fontWeight={'bold'}>{userProfile.username}</Text>
                 <Text fontSize={14}>{comment.comment}</Text>
             </Flex>

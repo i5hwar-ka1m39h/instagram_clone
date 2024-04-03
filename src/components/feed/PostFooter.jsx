@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react'
-import { Flex, Box, Text, InputGroup, InputRightElement, Button, Input} from '@chakra-ui/react';
+import { Flex, Box, Text, InputGroup, InputRightElement, Button, Input, useDisclosure} from '@chakra-ui/react';
 import {UnlikeLogo, NotificationsLogo, CommentLogo }from './../../assets/constants'
 import usePostComment from '../../hooks/usePostComment';
 import useAuthStore from '../../store/authStore';
 import useLikePost from '../../hooks/useLikePost';
+import timeSince from '../../generalFunction/timeSince';
+import CommentModal from './CommentModal';
 
-export default function PostFooter({post,username, isProfilePage}) {
+export default function PostFooter({post,userProfile, isProfilePage}) {
   
-  
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const[comment, setComment] = useState('');
   const authUser= useAuthStore(state=>state.user)
   const commentRef = useRef(null);
@@ -39,22 +41,33 @@ export default function PostFooter({post,username, isProfilePage}) {
       <Text fontWeight={600} fontSize={'sm'}>
           {likes} likes
         </Text>
+
+        {isProfilePage && (<Text fontSize={12} color={'gray'}>
+          Posted {timeSince(post.createdAt)} 
+        </Text>)}
+
       {
-        !isProfilePage && (
+        !isProfilePage && userProfile && (
           <>
             <Text fontSize={'sm'} fontWeight={700}>
-              {username}{' '}
+              {userProfile.username}{' '}
               <Text as='span' fontWeight={400}>
-                hurrray!!!!!!!!!!
+               {post.caption}
               </Text>
             </Text>
 
-            <Text fontSize={'sm'} color={'gray'}>
-              View all 1,000 comments
-            </Text>
+            {post.comments.length > 0 && (<Text fontSize={'sm'} color={'gray'} cursor={'pointer'} onClick={onOpen} >
+              View all {post.comments.length} comments
+            </Text>)}
+
+            {isOpen && <CommentModal isOpen={isOpen} onClose={onClose} post={post}/>}
           </>
         )
       }
+      
+     
+
+
       {authUser &&(
         <Flex alignItems={'center'} justifyContent={'space-between'} gap={2} width={'full'} >
           <InputGroup size='md'>

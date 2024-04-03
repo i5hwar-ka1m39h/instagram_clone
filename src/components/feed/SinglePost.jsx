@@ -14,7 +14,7 @@ export default function SinglePost({post}) {
     <Box borderRadius={4} overflow={'hidden'}>
         <Image src={post.imageURL} alt={post.caption}/>
     </Box>
-    {/* <PostFooter post={post} isProfilePage={false}/> */}
+    <PostFooter post={post} isProfilePage={false} userProfile={userProfile}/>
     </>
   )
 }
