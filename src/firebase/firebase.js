@@ -8,12 +8,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  // apiKey: "AIzaSyCepfDemG8SovQE7vW-mjMMDsWeWUlVBHE",
-  // authDomain: "insta-clone-iskalmegh.firebaseapp.com",
-  // projectId: "insta-clone-iskalmegh",
-  // storageBucket: "insta-clone-iskalmegh.appspot.com",
-  // messagingSenderId: "78858099586",
-  // appId: "1:78858099586:web:9c5b78fe1459101ca50d9b"
+  
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
